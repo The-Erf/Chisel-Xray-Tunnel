@@ -16,7 +16,7 @@
 
 
 
-## 🛠️ آموزش نصب و کانفیگ  
+## 🛠️ آموزش کانفیگ سرور دوم - خارج
 برای شروع روی پورت 443 یک کانفیگ tcp بسازید و مطمین بشید به درستی کار میکنه
  ترجیحا از ریلیتی یا Tls + Fallback استفاده کنید احتمالا نتیجه بهتری میگیرید😁
 
@@ -119,3 +119,82 @@ Dec 12 18:01:56 debian-8gb-hel1-5 systemd[1]: Started Chisel Service.
 Dec 12 18:01:56 debian-8gb-hel1-5 chisel_1.9.1_linux_amd64[713]: 2023/12/12 18:01:56 server: Fingerprint ZQ9dw6O26Sg+EYDccGxUbS6cNsH/>
 Dec 12 18:01:56 debian-8gb-hel1-5 chisel_1.9.1_linux_amd64[713]: 2023/12/12 18:01:56 server: Listening on http://0.0.0.0:80
 ```    
+
+اگر خواستید تغییری توی تنظیمات بدید باید فایل سرویس رو مجدد ویرایش کنید و سرویس Chisel رو با دستور زیر ریستارت کنید 
+
+```bash
+sudo systemctl restart chisel
+```    
+
+
+## 🛠️ آموزش کانفیگ سرور اول - ایران    
+
+خب رسیدیم به قسمت جذاب داستان😍
+به سرور ایرانتون ssh بزنید و مراحل دانلود و کانفیگ رو دقیقا مثل سرور خارج انجام بدید و پیش برید، فایل سرویس هم دقیقا مثل قبلی میسازیم اما این بار از کد های زیر برای فایل سرویسمون استفاده میکنیم
+
+```bash
+[Unit]
+Description=Chisel Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/chisel/
+ExecStart=/root/chisel/chisel_1.9.1_linux_amd64 client http://YourDomain.com 8000:127.0.0.1:443
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+```
+  توی فایل سرویس بالا هم بجای  Yourdomain.com دامنه خودتون رو قرار بدید، اون 8000 هم پورت تانلتون هستش که بعدا باید برای اتصال به کانفیگمون ازش استفاده کنیم و 443 هم همونطور که مشخصه پورت کانفیگ سرور خارجمون هستش که اگر پورت کانفیگتون فرق میکنه باید از اینجا هم تغییرش بدید😊     
+حالا سرویس Chisel رو فعال و استارت میکنیم و وضعیتشو برسی میکنیم 
+
+```bash
+sudo systemctl enable chisel
+```    
+```bash
+sudo systemctl start chisel
+```    
+```bash
+sudo systemctl status chisel
+```    
+  اگه تمام مراحل رو درست انجام داده باشید باید سرویس Chisel اکتیو و خروجی چیزی شبیه به این باشه که یعنی تانلمون با موفقیت برقرار شده😋
+```bash
+● chisel.service - Chisel Service
+     Loaded: loaded (/etc/systemd/system/chisel.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2023-12-14 11:52:29 +0330; 8s ago
+   Main PID: 49047 (chisel_1.9.1_li)
+      Tasks: 15 (limit: 28657)
+     Memory: 156.0M
+        CPU: 2.685s
+     CGroup: /system.slice/chisel.service
+             └─49047 /root/chisel/chisel_1.9.1_linux_amd64 client http://www.scimovie.cloud 8000:127.0.0.1:443
+
+Dec 14 11:52:29 zxc13 systemd[1]: Started Chisel Service.
+Dec 14 11:52:29 zxc13 systemd-journald[466]: Suppressed 3134 messages from chisel.service
+Dec 14 11:52:29 zxc13 chisel_1.9.1_linux_amd64[49047]: 2023/12/14 11:52:29 client: Connecting to ws://YourDomain.com:80
+Dec 14 11:52:29 zxc13 chisel_1.9.1_linux_amd64[49047]: 2023/12/14 11:52:29 client: tun: proxy#8000=>443: Listening
+Dec 14 11:52:33 zxc13 chisel_1.9.1_linux_amd64[49047]: 2023/12/14 11:52:33 client: Connected (Latency 393.753266ms)
+
+```    
+
+برای ریستارت کردن سرویس بعد از تغییرات جدید از دستور زیر استفاده میکنیم 
+```bash
+sudo systemctl restart chisel
+```    
+ و برای غیرفعال کردن تانل Chisel در هر 2 سرور از دستور زیر استفاده میکنیم 
+ 
+```bash
+sudo systemctl stop chisel 
+sudo systemctl disable chisel 
+```    
+
+
+
+## 🤔 حالا چطوری میتونیم به کانفیگمون متصل شیم؟
+- تانل Forwarder 
+- تانل Site-To-Site (پیشنهادی)
+
+        
