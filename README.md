@@ -34,7 +34,7 @@ netstat -tulnp
 
 برای دانلود اخرین نسخه Chisel متناسب با سیستم عاملتون وارد لینک زیر بشید :
 ```bash
-wget https://github.com/jpillora/chisel/releases
+https://github.com/jpillora/chisel/releases
 ```    
 
 
