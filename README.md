@@ -115,5 +115,4 @@ sudo systemctl status chisel
 Dec 12 18:01:56 debian-8gb-hel1-5 systemd[1]: Started Chisel Service.
 Dec 12 18:01:56 debian-8gb-hel1-5 chisel_1.9.1_linux_amd64[713]: 2023/12/12 18:01:56 server: Fingerprint ZQ9dw6O26Sg+EYDccGxUbS6cNsH/>
 Dec 12 18:01:56 debian-8gb-hel1-5 chisel_1.9.1_linux_amd64[713]: 2023/12/12 18:01:56 server: Listening on http://0.0.0.0:80
-
 ```    
