@@ -170,7 +170,7 @@ sudo systemctl status chisel
      Memory: 156.0M
         CPU: 2.685s
      CGroup: /system.slice/chisel.service
-             └─49047 /root/chisel/chisel_1.9.1_linux_amd64 client http://www.scimovie.cloud 8000:127.0.0.1:443
+             └─49047 /root/chisel/chisel_1.9.1_linux_amd64 client http:/YourDomain.com 8000:127.0.0.1:443
 
 Dec 14 11:52:29 zxc13 systemd[1]: Started Chisel Service.
 Dec 14 11:52:29 zxc13 systemd-journald[466]: Suppressed 3134 messages from chisel.service
@@ -194,6 +194,9 @@ sudo systemctl disable chisel
 
 
 ## 🤔 حالا چطوری میتونیم به کانفیگمون متصل شیم؟
+خب اینجا دقیقا همون جایی هستش که گفتم باید Chisel رو با ایده های خودتون ترکیب کنید!
+مثلا من 2 تا مثال ساده برای درک و شناخت بهتر براتون میزنم که میتونید ازشون استفاده کنید یا ایده بگیرید:)
+
 - تانل Forwarder 
 - تانل Site-To-Site (پیشنهادی)
 
