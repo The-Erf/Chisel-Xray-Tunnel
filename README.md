@@ -33,8 +33,10 @@ netstat -tulnp
 (البته ریلیتی با هیچ ترنزمیشنی پشت CDN نمیره)
 
 برای دانلود اخرین نسخه Chisel متناسب با سیستم عاملتون وارد لینک زیر بشید :
+```bash
+wget https://github.com/jpillora/chisel/releases
+```    
 
-`https://github.com/jpillora/chisel/releases`
 
 با این دستور یه مسیر جدید میسازیم و واردش میشیم 
 ```bash
