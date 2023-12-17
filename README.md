@@ -180,7 +180,7 @@ Dec 14 11:52:29 zxc13 chisel_1.9.1_linux_amd64[49047]: 2023/12/14 11:52:29 clien
 Dec 14 11:52:33 zxc13 chisel_1.9.1_linux_amd64[49047]: 2023/12/14 11:52:33 client: Connected (Latency 393.753266ms)
 
 ```    
-
+اگه مشکل هندشیک داشتید برید توی داشبورد کلادفلر Always Use HTTPS رو خاموش کنید
 برای ریستارت کردن سرویس بعد از تغییرات جدید از دستور زیر استفاده میکنیم 
 ```bash
 sudo systemctl restart chisel
